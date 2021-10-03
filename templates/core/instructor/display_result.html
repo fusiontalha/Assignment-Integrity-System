@@ -1,0 +1,100 @@
+ {% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block title %} Assignment Result {% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+                
+                    <div class="container">
+
+        <div class="col-12 col-sm-6 col-md-10">
+            {% if request.user.is_authenticated and request.user.role != 'Student' %}
+
+            {% comment %} {{request.user.id}} {% endcomment %}
+                    {{assignmentresult.id}}
+                    </br>
+<table class="table table-bordered">
+<thead><tr><th scope="col"><h4>Marks</h4></th>
+<th scope="col"><h4>Comments</h4></th>
+{% comment %} <th scope="col"><h4>Answer</h4></th> {% endcomment %}
+<th scope="col"><h4>Plagerism Report</h4></th>
+
+{% comment %} <th scope="col"><h4>Comments</h4></th> {% endcomment %}
+</tr>
+</thead>
+                     {% comment %} {{request.user.is_authenticated}} {% endcomment %}
+                 {% for foo in assignmentresult %}
+              <tr>       
+              <td> {{ foo.marks }} </td>
+                    <td> {{ foo.comments }} </td>
+                    {% if foo.file %}
+                          <td><a href="{{ foo.file.url }}"> Report Downlaod</td>
+                
+                    {% endif %}
+                    </tr>
+                    </table>
+                {% endfor %}
+                <h4><a href="{% url 'core:home' %}">home</a></h4>
+
+                <br/>
+            {% else %}
+                <h3>no result to display</h3>
+                <h4><a href="{% url 'core:home' %}">home</a></h4>
+
+
+
+            {% endif %}
+            
+      </div>
+
+    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+{% comment %} <div class="container col-md-10 edit_box" >
+  <form method="POST">
+  {{form.as_p}}
+    {% csrf_token %}
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+  </form> {% endcomment %}
+    {% comment %} {% csrf_token %}
+
+    <h3><u>Editing Student</u></h3>
+    {% for field in form %}
+    <div class="form-group row">
+      <label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>
+
+      <div class="col-10">
+
+        {{ field }}
+
+      </div>
+    </div>
+
+    {% endfor %}
+
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-6">
+        <button type="submit" class="btn btn-primary">Update</button>
+
+      </div>
+
+    </div>
+
+  </form> {% endcomment %}
+
+</div>
+
+{% endblock %}

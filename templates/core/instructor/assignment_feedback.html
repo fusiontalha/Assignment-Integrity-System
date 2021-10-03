@@ -1,0 +1,63 @@
+ {% extends 'base.html' %}
+
+{% load bootstrap %}
+ 
+{% block title %} Assignment Result {% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <center> <h3> Create Assignment </h3></center>
+                          <br/>
+                    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+                        {{ form|bootstrap }}
+
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="update" class="btn btn-primary btn-md text-white">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+{% comment %} <div class="container col-md-10 edit_box" >
+  <form method="POST">
+  {{form.as_p}}
+    {% csrf_token %}
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+  </form> {% endcomment %}
+    {% comment %} {% csrf_token %}
+
+    <h3><u>Editing Student</u></h3>
+    {% for field in form %}
+    <div class="form-group row">
+      <label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>
+
+      <div class="col-10">
+
+        {{ field }}
+
+      </div>
+    </div>
+
+    {% endfor %}
+
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-6">
+        <button type="submit" class="btn btn-primary">Update</button>
+
+      </div>
+
+    </div>
+
+  </form> {% endcomment %}
+
+</div>
+
+{% endblock %}

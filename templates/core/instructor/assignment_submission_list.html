@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Assignments{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="col-12 col-sm-6 col-md-10">
+                    <strong><h3>Assignments</h3></strong>
+        <hr/>
+        <table class="table table-bordered">
+            {% for foo in assignment_submission %}
+
+        <thead><tr><th scope="col"><h4>Name</h4></th>
+        <th scope="col"><h4>Id</h4></th>
+        {% comment %} <th scope="col"><h4>Answer</h4></th> {% endcomment %}
+        <th scope="col"><h4>file</h4></th>
+        <th scope="col"><h4>Update Marks</h4></th>
+        {% comment %} <th scope="col"><h4>Comments</h4></th> {% endcomment %}
+        </tr>
+        </thead>
+                <tr><td> {{ foo.name }} </td>
+
+                 <td> {{ foo.university_id }}</td>
+                <hr/>
+                {% comment %} <td> {{ foo.content }}  </td> {% endcomment %}
+                {% if foo.file %}
+                    <td> <a href="{{ foo.file.url }}"> {{ foo.file }} </td>
+                
+                {% endif %}
+                
+                {% comment %} <a href="{% url 'core:assignment-marks-update' foo.id %}">update Marks</a> {% endcomment %}
+            
+                  <td><a href="{% url 'core:result-create'  %}">update marks</a>
+                  </td>
+                  {% comment %} <td><a href="{% url 'core:assignment-submission-delete' foo.id %}">Delete Assignment</a>
+                
+                  </td> {% endcomment %}
+                  <td><a href="{% url 'core:delete-assignment' foo.id %}">Delete Assignment</a>
+                  </td>
+                  <td><a href="{% url 'core:plagcheck-assignment' foo.id %}">Check Plagerisim</a>
+                  </td>
+                  <td>Check Plagerisim </td>
+                    1:create a form to ask to upload file or use the file uploaded
+                    generate report
+                    upload it on update result
+                  </tr>
+            {% endfor %}
+</table>
+
+
+
+            <br/>
+
+
+            <br/>
+
+
+        </div>
+
+    </div>
+
+{% endblock %}
